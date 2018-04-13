@@ -36,7 +36,8 @@ namespace FinancialCalculator
             {
                 // Populate the class with essential values from the form.
                 mortObject.OriginalAmount = doubleValue(txtOriginalAmt.Text);
-                mortObject.DownPaymentPercent = doubleValue(txtDownPmtPct.Value.ToString()) / 100;
+                // Allow for zero down payment. 
+                mortObject.DownPaymentPercent = txtDownPmtPct.Value > 0 ? doubleValue(txtDownPmtPct.Value.ToString()) / 100 : 0;
                 mortObject.LoanPeriodInMonths = (txtMonths.Text.Length > 0) ? int.Parse(txtMonths.Text) : 0;
                 mortObject.InterestRate = txtInterest.Value > 0 ? ((Double)txtInterest.Value / 100) : 0;
 
@@ -61,12 +62,13 @@ namespace FinancialCalculator
 
             try
             {
+                epLoanCalc.SetError(txtOriginalAmt, "");
                 // Reject anything but numeric values. 
                 if (txtOriginalAmt.Text.Length > 0 &&
                     !Double.TryParse(txtOriginalAmt.Text, out entryValue))
                 {
                     e.Cancel = true;
-                    MessageBox.Show("Please enter a numeric value.");
+                    epLoanCalc.SetError(txtOriginalAmt, "Please enter a numeric value.");
                 }
                 else
                 {
@@ -88,12 +90,13 @@ namespace FinancialCalculator
 
             try
             {
+                epLoanCalc.SetError(txtMonths, "");
                 // Reject anything but numeric values. 
                 if (txtMonths.Text.Length > 0 &&
                     !int.TryParse(txtMonths.Text, out entryValue))
                 {
                     e.Cancel = true;
-                    MessageBox.Show("Please enter a numeric value.");
+                    epLoanCalc.SetError(txtMonths, "Please enter a numeric value.");
                 }
                 else
                 {
@@ -140,12 +143,13 @@ namespace FinancialCalculator
 
             try
             {
+                epLoanCalc.SetError(txtDownPmtAmt, "");
                 // Only accept numeric values.
                 if (txtDownPmtAmt.Text.Length > 0 &&
                     !Double.TryParse(txtDownPmtAmt.Text, out entryValue))
                 {
                     e.Cancel = true;
-                    MessageBox.Show("Please enter a numeric value.");
+                    epLoanCalc.SetError(txtDownPmtAmt, "Please enter a numeric value.");
                 }
                 else
                 {
@@ -192,11 +196,11 @@ namespace FinancialCalculator
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error ...");
+                throw ex;
             }
 
-                // Return the double.
-                return returnValue;
+            // Return the double.
+            return returnValue;
         }
 
         // --------------------------------------------------

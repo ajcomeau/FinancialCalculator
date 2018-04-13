@@ -130,7 +130,9 @@ namespace FinancialCalculator
 
             try
             {
-                if (_OriginalAmt > 0 && _downPaymentPct > 0)
+                if (_downPaymentPct == 0)
+                    returnValue = _OriginalAmt;
+                else if (_OriginalAmt > 0 && _downPaymentPct > 0)
                     returnValue = (_OriginalAmt - (_OriginalAmt * (double)_downPaymentPct));
                 else
                     returnValue = 0;
@@ -165,8 +167,16 @@ namespace FinancialCalculator
 
         public double TotalInterest()
         {
+            double returnValue;
+
             // Return total interest as total of loan minus the principal.
-            return Math.Round((TotalLoanAmount() - LoanPrincipal()), 2);
+            // Return 0 if the monthly payment has not been set.
+            if (MonthlyPayment() > 0)
+                returnValue = Math.Round((TotalLoanAmount() - LoanPrincipal()), 2);
+            else
+                returnValue = 0;
+
+            return returnValue;
         }
 
         public double MonthlyPayment()
