@@ -54,26 +54,30 @@ namespace FinancialCalculator
             }
         }
 
-
-
-        private void txtOriginalAmt_Validating(object sender, CancelEventArgs e)
+        private void txtbox_Validating(object sender, CancelEventArgs e)
         {
             double entryValue = 0;
+            TextBox txt = sender as TextBox;
+
+            if (txt == null) return;
 
             try
             {
-                epLoanCalc.SetError(txtOriginalAmt, "");
+                epLoanCalc.SetError(txt, "");
                 // Reject anything but numeric values. 
-                if (txtOriginalAmt.Text.Length > 0 &&
-                    !Double.TryParse(txtOriginalAmt.Text, out entryValue))
+                if (txt.Text.Length > 0 &&
+                    !Double.TryParse(txt.Text, out entryValue))
                 {
                     e.Cancel = true;
-                    epLoanCalc.SetError(txtOriginalAmt, "Please enter a numeric value.");
+                    epLoanCalc.SetError(txt, "Please enter a numeric value.");
                 }
                 else
                 {
-                    // Reformat entry in 0,000.00 format.
-                    txtOriginalAmt.Text = entryValue.ToString("N", CultureInfo.InvariantCulture);
+                    // Reformat entry format.
+                    if (txt.Name == "txtMonths")
+                        txt.Text = entryValue.ToString("N0", CultureInfo.InvariantCulture);
+                    else
+                        txt.Text = entryValue.ToString("N", CultureInfo.InvariantCulture);
                 }
             }
             catch (Exception ex)
@@ -83,37 +87,8 @@ namespace FinancialCalculator
         }
 
 
-        private void txtMonths_Validating(object sender, CancelEventArgs e)
-        {
-
-            int entryValue = 0;
-
-            try
-            {
-                epLoanCalc.SetError(txtMonths, "");
-                // Reject anything but numeric values. 
-                if (txtMonths.Text.Length > 0 &&
-                    !int.TryParse(txtMonths.Text, out entryValue))
-                {
-                    e.Cancel = true;
-                    epLoanCalc.SetError(txtMonths, "Please enter a numeric value.");
-                }
-                else
-                {
-                    // Reformat entry in 0,000.00 format.
-                    txtMonths.Text = entryValue.ToString();
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ...");
-            }
-
-        }
-
         private void txtDownPmtPct_ValueChanged(object sender, EventArgs e)
         {
-
             try
             {
                 // If the original amount has been entered and the percent is more than 0
@@ -132,50 +107,6 @@ namespace FinancialCalculator
         }
 
         private void txtInterest_ValueChanged(object sender, EventArgs e)
-        {
-            // Update the fields with new values.
-            UpdateFields();
-        }
-
-        private void txtDownPmtAmt_Validating(object sender, CancelEventArgs e)
-        {
-            double entryValue = 0;
-
-            try
-            {
-                epLoanCalc.SetError(txtDownPmtAmt, "");
-                // Only accept numeric values.
-                if (txtDownPmtAmt.Text.Length > 0 &&
-                    !Double.TryParse(txtDownPmtAmt.Text, out entryValue))
-                {
-                    e.Cancel = true;
-                    epLoanCalc.SetError(txtDownPmtAmt, "Please enter a numeric value.");
-                }
-                else
-                {
-                    // Format to 0,000.00 and upate the down payment percentage. 
-                    txtDownPmtAmt.Text = entryValue.ToString("N", CultureInfo.InvariantCulture);
-                    if (doubleValue(txtOriginalAmt.Text) > 0 && doubleValue(txtDownPmtAmt.Text) > 0)
-                    {
-                        txtDownPmtPct.Value = (Decimal)((doubleValue(txtDownPmtAmt.Text) / doubleValue(txtOriginalAmt.Text)) * 100);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ...");
-            }
-
-        }
-
-        private void txtOriginalAmt_TextChanged(object sender, EventArgs e)
-        {
-            // Update the fields with new values.
-            UpdateFields();
-        }
-
-
-        private void txtMonths_TextChanged(object sender, EventArgs e)
         {
             // Update the fields with new values.
             UpdateFields();
@@ -214,83 +145,6 @@ namespace FinancialCalculator
             Application.Exit();
         }
 
-        private void txtInitDeposit_Validating(object sender, CancelEventArgs e)
-        {
-            double entryValue = 0;
-
-            try
-            {
-                epLoanCalc.SetError(txtInitDeposit, "");
-                // Reject anything but numeric values. 
-                if (txtInitDeposit.Text.Length > 0 &&
-                    !double.TryParse(txtInitDeposit.Text, out entryValue))
-                {
-                    e.Cancel = true;
-                    epLoanCalc.SetError(txtInitDeposit, "Please enter a numeric value.");
-                }
-                else
-                {
-                    // Reformat entry in 0,000.00 format.
-                    txtInitDeposit.Text = entryValue.ToString("N", CultureInfo.InvariantCulture);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ...");
-            }
-        }
-
-        private void txtMonthlyDep_Validating(object sender, CancelEventArgs e)
-        {
-            double entryValue = 0;
-
-            try
-            {
-                epLoanCalc.SetError(txtMonthlyDep, "");
-                // Reject anything but numeric values. 
-                if (txtMonthlyDep.Text.Length > 0 &&
-                    !double.TryParse(txtMonthlyDep.Text, out entryValue))
-                {
-                    e.Cancel = true;
-                    epLoanCalc.SetError(txtMonthlyDep, "Please enter a numeric value.");
-                }
-                else
-                {
-                    // Reformat entry in 0,000.00 format.
-                    txtMonthlyDep.Text = entryValue.ToString("N", CultureInfo.InvariantCulture);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ...");
-            }
-        }
-
-        private void txtYears_Validating(object sender, CancelEventArgs e)
-        {
-            int entryValue = 0;
-
-            try
-            {
-                epLoanCalc.SetError(txtYears, "");
-                // Reject anything but numeric values. 
-                if (txtYears.Text.Length > 0 &&
-                    !int.TryParse(txtYears.Text, out entryValue))
-                {
-                    e.Cancel = true;
-                    epLoanCalc.SetError(txtYears, "Please enter a numeric value.");
-                }
-                else
-                {
-                    // Reformat entry in 0,000.00 format.
-                    txtYears.Text = entryValue.ToString("N", CultureInfo.InvariantCulture);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ...");
-            }
-        }
 
         private void btnCalc_Click(object sender, EventArgs e)
         {
@@ -318,6 +172,31 @@ namespace FinancialCalculator
             }
         }
 
+        private void txtOriginalAmt_Leave(object sender, EventArgs e)
+        {
+            // Update the fields with new values.
+            UpdateFields();
+        }
+
+        private void txtDownPmtAmt_Leave(object sender, EventArgs e)
+        {
+            // Update the fields with new values.
+
+            // If the original amount has been entered and the down payment is more than 0
+            // update the down payment percent field.
+            if (doubleValue(txtOriginalAmt.Text) > 0 && doubleValue(txtDownPmtAmt.Text) > 0)
+            {
+                txtDownPmtPct.Value = (Decimal)(doubleValue(txtDownPmtAmt.Text) / doubleValue(txtOriginalAmt.Text));
+            }
+
+            UpdateFields();
+        }
+
+        private void txtMonths_Leave(object sender, EventArgs e)
+        {
+            // Update the fields with new values.
+            UpdateFields();
+        }
 
     }
 }

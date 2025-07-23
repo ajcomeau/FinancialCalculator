@@ -183,7 +183,8 @@
             this.txtDownPmtAmt.Size = new System.Drawing.Size(100, 20);
             this.txtDownPmtAmt.TabIndex = 30;
             this.txtDownPmtAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDownPmtAmt.Validating += new System.ComponentModel.CancelEventHandler(this.txtDownPmtAmt_Validating);
+            this.txtDownPmtAmt.Leave += new System.EventHandler(this.txtDownPmtAmt_Leave);
+            this.txtDownPmtAmt.Validating += new System.ComponentModel.CancelEventHandler(this.txtbox_Validating);
             // 
             // txtPayOff
             // 
@@ -192,7 +193,7 @@
             this.txtPayOff.Location = new System.Drawing.Point(266, 174);
             this.txtPayOff.Name = "txtPayOff";
             this.txtPayOff.ReadOnly = true;
-            this.txtPayOff.Size = new System.Drawing.Size(109, 29);
+            this.txtPayOff.Size = new System.Drawing.Size(142, 29);
             this.txtPayOff.TabIndex = 38;
             this.txtPayOff.TabStop = false;
             this.txtPayOff.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -213,7 +214,7 @@
             this.txtTotalInterest.Location = new System.Drawing.Point(266, 126);
             this.txtTotalInterest.Name = "txtTotalInterest";
             this.txtTotalInterest.ReadOnly = true;
-            this.txtTotalInterest.Size = new System.Drawing.Size(109, 29);
+            this.txtTotalInterest.Size = new System.Drawing.Size(142, 29);
             this.txtTotalInterest.TabIndex = 37;
             this.txtTotalInterest.TabStop = false;
             this.txtTotalInterest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -234,7 +235,7 @@
             this.txtLoanTotal.Location = new System.Drawing.Point(266, 78);
             this.txtLoanTotal.Name = "txtLoanTotal";
             this.txtLoanTotal.ReadOnly = true;
-            this.txtLoanTotal.Size = new System.Drawing.Size(109, 29);
+            this.txtLoanTotal.Size = new System.Drawing.Size(142, 29);
             this.txtLoanTotal.TabIndex = 35;
             this.txtLoanTotal.TabStop = false;
             this.txtLoanTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -255,7 +256,7 @@
             this.txtPayment.Location = new System.Drawing.Point(266, 30);
             this.txtPayment.Name = "txtPayment";
             this.txtPayment.ReadOnly = true;
-            this.txtPayment.Size = new System.Drawing.Size(109, 29);
+            this.txtPayment.Size = new System.Drawing.Size(142, 29);
             this.txtPayment.TabIndex = 34;
             this.txtPayment.TabStop = false;
             this.txtPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -294,8 +295,8 @@
             this.txtMonths.Size = new System.Drawing.Size(100, 20);
             this.txtMonths.TabIndex = 31;
             this.txtMonths.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMonths.TextChanged += new System.EventHandler(this.txtMonths_TextChanged);
-            this.txtMonths.Validating += new System.ComponentModel.CancelEventHandler(this.txtMonths_Validating);
+            this.txtMonths.Leave += new System.EventHandler(this.txtMonths_Leave);
+            this.txtMonths.Validating += new System.ComponentModel.CancelEventHandler(this.txtbox_Validating);
             // 
             // label3
             // 
@@ -342,8 +343,8 @@
             this.txtOriginalAmt.Size = new System.Drawing.Size(100, 20);
             this.txtOriginalAmt.TabIndex = 27;
             this.txtOriginalAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtOriginalAmt.TextChanged += new System.EventHandler(this.txtOriginalAmt_TextChanged);
-            this.txtOriginalAmt.Validating += new System.ComponentModel.CancelEventHandler(this.txtOriginalAmt_Validating);
+            this.txtOriginalAmt.Leave += new System.EventHandler(this.txtOriginalAmt_Leave);
+            this.txtOriginalAmt.Validating += new System.ComponentModel.CancelEventHandler(this.txtbox_Validating);
             // 
             // btnGo
             // 
@@ -485,7 +486,7 @@
             this.txtMonthlyDep.Size = new System.Drawing.Size(100, 20);
             this.txtMonthlyDep.TabIndex = 2;
             this.txtMonthlyDep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMonthlyDep.Validating += new System.ComponentModel.CancelEventHandler(this.txtMonthlyDep_Validating);
+            this.txtMonthlyDep.Validating += new System.ComponentModel.CancelEventHandler(this.txtbox_Validating);
             // 
             // label14
             // 
@@ -520,7 +521,7 @@
             this.txtInitDeposit.Size = new System.Drawing.Size(100, 20);
             this.txtInitDeposit.TabIndex = 0;
             this.txtInitDeposit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtInitDeposit.Validating += new System.ComponentModel.CancelEventHandler(this.txtInitDeposit_Validating);
+            this.txtInitDeposit.Validating += new System.ComponentModel.CancelEventHandler(this.txtbox_Validating);
             // 
             // menuStrip1
             // 

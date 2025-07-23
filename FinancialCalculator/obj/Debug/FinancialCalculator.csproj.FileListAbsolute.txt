@@ -20,7 +20,6 @@ M:\Visual Studio Projects\FinancialCalculator\FinancialCalculator\obj\Debug\Fina
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.exe.config
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.exe
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.pdb
-C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.LoanCalc.resources
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.Properties.Resources.resources
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.GenerateResource.cache
@@ -37,3 +36,5 @@ C:\Users\acome\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\Financi
 C:\Users\acome\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.CoreCompileInputs.cache
 C:\Users\acome\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe
 C:\Users\acome\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.pdb
+C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.AssemblyReference.cache
+C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe.config
