@@ -175,6 +175,8 @@ namespace FinancialCalculator
         private void txtOriginalAmt_Leave(object sender, EventArgs e)
         {
             // Update the fields with new values.
+            txtDownPmtPct.Value = 0;
+            txtDownPmtAmt.Text = "0.00";
             UpdateFields();
         }
 
@@ -186,7 +188,7 @@ namespace FinancialCalculator
             // update the down payment percent field.
             if (doubleValue(txtOriginalAmt.Text) > 0 && doubleValue(txtDownPmtAmt.Text) > 0)
             {
-                txtDownPmtPct.Value = (Decimal)(doubleValue(txtDownPmtAmt.Text) / doubleValue(txtOriginalAmt.Text));
+                txtDownPmtPct.Value = (Decimal)(doubleValue(txtDownPmtAmt.Text) / doubleValue(txtOriginalAmt.Text)) * 100;
             }
 
             UpdateFields();

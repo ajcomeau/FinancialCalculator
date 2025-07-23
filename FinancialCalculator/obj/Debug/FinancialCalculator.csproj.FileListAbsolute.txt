@@ -38,3 +38,14 @@ C:\Users\acome\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\Financi
 C:\Users\acome\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.pdb
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.AssemblyReference.cache
 C:\Users\Andrew\Desktop\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe.config
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.exe.config
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.exe
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.pdb
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.AssemblyReference.cache
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.SuggestedBindingRedirects.cache
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.LoanCalc.resources
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.Properties.Resources.resources
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.GenerateResource.cache
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.CoreCompileInputs.cache
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe
+C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.pdb
