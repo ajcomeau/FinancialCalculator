@@ -8,16 +8,16 @@ namespace FinancialCalculator
 {
     class FinanceCalcs
     {
-        public static double CompoundingInterest(double InitAmount, double Interest, int Years, int timesPerYear)
+        public static decimal CompoundingInterestFactor(decimal Interest, int Years, int timesPerYear)
         {
-            // Using the formula P(1+r/n)(nt) from TheCalculatorSite.com
+            // Using the formula (1+r/n)(nt) from TheCalculatorSite.com
             // https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php?page=2
 
-            double returnResult = 0;
+            decimal returnResult = 0;
 
             try
             {
-                returnResult = InitAmount * Math.Pow((1 + (Interest / timesPerYear)), (timesPerYear * Years));
+                returnResult = (decimal)Math.Pow((double)(1 + Interest / timesPerYear), timesPerYear * Years);
             }
             catch
             {
@@ -28,29 +28,28 @@ namespace FinancialCalculator
             return returnResult;
         }
 
-        public static double CompoundingInterestWithDeposits(double InitAmount, double MonthlyDeposit, double Interest, int Years, int timesPerYear)
+        public static decimal CompoundingInterestWithDeposits(decimal InitAmount, decimal MonthlyDeposit, decimal Interest, int Years, int timesPerYear)
         {
             // Using the formula P(1+r/n)(nt) + PMT × {[(1 + r/n)(nt) - 1] / (r/n)} from TheCalculatorSite.com
             // https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php?page=2
 
-            double initAmount = 0;
-            double pmtAmount = 0;
-            double periodInterest = 0;
-            double exponent = 0;
+            decimal initAmtPlusInt = 0;
+            decimal pmtSeries = MonthlyDeposit * 12 * Years;
+            decimal pmtSeriesPlusInt = 0;
+            decimal intFactor = CompoundingInterestFactor(Interest, Years, timesPerYear);
+            
 
             try
             {
-                initAmount = CompoundingInterest(InitAmount, Interest, Years, timesPerYear);
-                periodInterest = Interest / timesPerYear;
-                exponent = timesPerYear * Years;
-                pmtAmount = MonthlyDeposit * (((Math.Pow((1 + periodInterest), exponent)) - 1) / periodInterest);
+                initAmtPlusInt = InitAmount * intFactor;
+                pmtSeriesPlusInt = MonthlyDeposit * ((intFactor - 1) / (Interest / timesPerYear));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return initAmount + pmtAmount;
+            return initAmtPlusInt + pmtSeriesPlusInt;
         }
 
 

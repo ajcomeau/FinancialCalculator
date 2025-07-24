@@ -112,6 +112,28 @@ namespace FinancialCalculator
             UpdateFields();
         }
 
+        private decimal decimalValue(string TextString)
+        {
+            // Parse the numeric value of a textbox.
+            // Put the code here to avoid repetition.
+            decimal returnValue = 0;
+
+            try
+            {
+                if (!decimal.TryParse(TextString, out returnValue))
+                {
+                    returnValue = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            // Return the double.
+            return returnValue;
+        }
+
         private double doubleValue(string TextString)
         {
             // Parse the numeric value of a textbox.
@@ -138,9 +160,7 @@ namespace FinancialCalculator
         // COMPOUND INTEREST FUNCTIONS
         // --------------------------------------------------
 
-        
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+                private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -149,9 +169,9 @@ namespace FinancialCalculator
         private void btnCalc_Click(object sender, EventArgs e)
         {
             // Get values from form
-            double initDeposit = doubleValue(txtInitDeposit.Text);
-            double intRate = (Double)txtIntRate.Value / 100;
-            double monthlyDep = doubleValue(txtMonthlyDep.Text);
+            decimal initDeposit = decimalValue(txtInitDeposit.Text);
+            decimal intRate = (decimal)txtIntRate.Value / 100;
+            decimal monthlyDep = decimalValue(txtMonthlyDep.Text);
             int timeInYears = int.Parse(txtYears.Text);
             int timesPerYear;
 
@@ -167,8 +187,8 @@ namespace FinancialCalculator
             }
             else
             {
-                txtFinalAmt.Text = FinanceCalcs.CompoundingInterest(initDeposit, 
-                    intRate, timeInYears, timesPerYear).ToString("C");
+                txtFinalAmt.Text = (initDeposit * FinanceCalcs.CompoundingInterestFactor( 
+                    intRate, timeInYears, timesPerYear)).ToString("C");
             }
         }
 
