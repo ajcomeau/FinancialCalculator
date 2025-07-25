@@ -22,7 +22,7 @@ namespace FinancialCalculator
 
         // --------------------------------------------------
         // MORTGAGE AND COMPOUND INTEREST CALCULATOR
-        // A simple calcuator for determining loand details and
+        // A simple calcuator for determining loan details and
         // the results of a savings plan.
         // Developed as a classroom exercise in C# object-oriented
         // programming.
