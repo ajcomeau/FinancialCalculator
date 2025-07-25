@@ -1,6 +1,6 @@
 # FinancialCalculator
 
-## A simple calcuator for determining load details and the results of a savings plan.
+## A simple calcuator for determining loan details and the results of a savings plan.
         
 Developed as a classroom exercise in C# object-oriented programming.
 Last updated July 2025
