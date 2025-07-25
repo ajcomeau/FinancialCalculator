@@ -21,7 +21,17 @@ namespace FinancialCalculator
         }
 
         // --------------------------------------------------
-        // MORTGAGE FUNCTIONS
+        // MORTGAGE AND COMPOUND INTEREST CALCULATOR
+        // A simple calcuator for determining loand details and
+        // the results of a savings plan.
+        // Developed as a classroom exercise in C# object-oriented
+        // programming.
+        // Andrew Comeau (ComeauSoftware.com) 
+        // Last updated July 2025
+        // --------------------------------------------------
+
+        // --------------------------------------------------
+        // MORTGAGE TAB FUNCTIONS
         // --------------------------------------------------
 
         private void btnGo_Click(object sender, EventArgs e)
@@ -35,11 +45,11 @@ namespace FinancialCalculator
             try
             {
                 // Populate the class with essential values from the form.
-                mortObject.OriginalAmount = doubleValue(txtOriginalAmt.Text);
+                mortObject.OriginalAmount = decimalValue(txtOriginalAmt.Text);
                 // Allow for zero down payment. 
-                mortObject.DownPaymentPercent = txtDownPmtPct.Value > 0 ? doubleValue(txtDownPmtPct.Value.ToString()) / 100 : 0;
+                mortObject.DownPaymentPercent = txtDownPmtPct.Value > 0 ? decimalValue(txtDownPmtPct.Value.ToString()) / 100 : 0;
                 mortObject.LoanPeriodInMonths = (txtMonths.Text.Length > 0) ? int.Parse(txtMonths.Text) : 0;
-                mortObject.InterestRate = txtInterest.Value > 0 ? ((Double)txtInterest.Value / 100) : 0;
+                mortObject.InterestRate = txtInterest.Value > 0 ? ((decimal)txtInterest.Value / 100) : 0;
 
                 // Re-populate the form fields with class functions.
                 txtPrincipal.Text = mortObject.LoanPrincipal().ToString("C");
@@ -160,7 +170,7 @@ namespace FinancialCalculator
         // COMPOUND INTEREST FUNCTIONS
         // --------------------------------------------------
 
-                private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -169,9 +179,9 @@ namespace FinancialCalculator
         private void btnCalc_Click(object sender, EventArgs e)
         {
             // Get values from form
-            double initDeposit = doubleValue(txtInitDeposit.Text);
-            double intRate = (double)txtIntRate.Value / 100;
-            double monthlyDep = doubleValue(txtMonthlyDep.Text);
+            decimal initDeposit = decimalValue(txtInitDeposit.Text);
+            decimal intRate = (decimal)txtIntRate.Value / 100;
+            decimal monthlyDep = decimalValue(txtMonthlyDep.Text);
             int timeInYears = int.Parse(txtYears.Text);
             int timesPerYear;
 
@@ -219,6 +229,7 @@ namespace FinancialCalculator
             // Update the fields with new values.
             UpdateFields();
         }
+
 
     }
 }

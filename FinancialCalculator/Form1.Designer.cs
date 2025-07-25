@@ -245,9 +245,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(263, 62);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.Size = new System.Drawing.Size(107, 13);
             this.label7.TabIndex = 44;
-            this.label7.Text = "Loan Total";
+            this.label7.Text = "Loan Total Payments";
             // 
             // txtPayment
             // 

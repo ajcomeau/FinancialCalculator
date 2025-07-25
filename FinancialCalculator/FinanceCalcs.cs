@@ -9,7 +9,7 @@ namespace FinancialCalculator
 {
     class FinanceCalcs
     {
-        public static double CompoundingInterest(double P, double r, int t, int n)
+        public static decimal CompoundingInterest(decimal P, decimal r, int t, int n)
         {
             // Using the formula (1+r/n)(nt) from TheCalculatorSite.com
             // https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php?page=2
@@ -18,11 +18,11 @@ namespace FinancialCalculator
             // n = number of times interest is compounded per year
             // t = time in years
 
-            double returnResult = 0;
+            decimal returnResult = 0;
 
             try
             {
-                returnResult = P * Math.Pow((1 + (r / n)), (n * t));
+                returnResult = P * (decimal)Math.Pow((double)(1 + (r / n)), (n * t));
             }
             catch
             {
@@ -33,24 +33,28 @@ namespace FinancialCalculator
             return returnResult;
         }
 
-        public static double CompoundingInterestWithDeposits(double P, double PMT, double r, int t, int n)
+        public static decimal CompoundingInterestWithDeposits(decimal P, decimal PMT, decimal r, int t, int n)
         {
-            // Using the formula P(1+r/n)(nt) + PMT × {[(1 + r/n)(nt) - 1] / (r/n)} from TheCalculatorSite.com
+            // Using the monthly contriutions formula from TheCalculatorSite.com
             // https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php?page=2
+            // Tested against:
+            // https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator
             // P = principal investment amount
             // PMT = monthly payment amount
             // r = annual interest rate(decimal)
             // n = number of times interest is compounded per year
             // t = time in years
 
-            //decimal pmtSeries = PMT * 12 * t;
-            double pmtSeriesPlusInt = 0;
-            double initAmtPlusInt = 0;
-
+            decimal pmtSeriesPlusInt = 0;
+            decimal initAmtPlusInt = 0;
+            //Formula assumes deposits are made as often as compounding. Monthly deposit amount 
+            //must be converted to quarterly or yearly total if necessary.
+            decimal deposit = (n == 12) ? PMT : (n == 4) ? PMT * 3 : (n == 1) ? (PMT * 12) : PMT;
+            
             try
             {
-                initAmtPlusInt = P * Math.Pow(1 + (r / n), (n * t));
-                pmtSeriesPlusInt = PMT * ((Math.Pow((1 + (r / n)), (n * t)) - 1) / (r / n));
+                initAmtPlusInt = P * (decimal)Math.Pow((double)(1 + (r / n)), (n * t));
+                pmtSeriesPlusInt = deposit * ((decimal)(Math.Pow((double)(1 + (r / n)), (n * t)) - 1) / (r / n));
             }
             catch (Exception ex)
             {
@@ -65,19 +69,19 @@ namespace FinancialCalculator
 
     class MortgageAnalysis
     {
-        double _OriginalAmt;
-        double _downPaymentPct;
+        decimal _OriginalAmt;
+        decimal _downPaymentPct;
         int _loanInMonths;
-        double _interestRate;
+        decimal _interestRate;
         DateTime _startDate;
 
-        public double OriginalAmount
+        public decimal OriginalAmount
         {
             get { return _OriginalAmt; }
             set { _OriginalAmt = value; }
         }
 
-        public double DownPaymentPercent
+        public decimal DownPaymentPercent
         {
             get { return _downPaymentPct; }
             set { if (value > 1) { _downPaymentPct = (value / 100); } else { _downPaymentPct = value; } }
@@ -89,7 +93,7 @@ namespace FinancialCalculator
             set { _loanInMonths = value; }
         }
 
-        public double InterestRate
+        public decimal InterestRate
         {
             get { return _interestRate; }
             set { if (value >= 1) { _interestRate = (value / 100); } else { _interestRate = value; } }
@@ -111,7 +115,7 @@ namespace FinancialCalculator
             _startDate = DateTime.Today;
         }
 
-        public MortgageAnalysis(double SalePrice, double DownPaymentPct, int LoanInMonths, double InterestRate, DateTime StartDate)
+        public MortgageAnalysis(decimal SalePrice, decimal DownPaymentPct, int LoanInMonths, decimal InterestRate, DateTime StartDate)
         {
             _OriginalAmt = SalePrice;
             _downPaymentPct = DownPaymentPct;
@@ -120,7 +124,7 @@ namespace FinancialCalculator
             _startDate = StartDate;
         }
 
-        public MortgageAnalysis(double SalePrice, double DownPaymentPct, int LoanInMonths, double InterestRate)
+        public MortgageAnalysis(decimal SalePrice, decimal DownPaymentPct, int LoanInMonths, decimal InterestRate)
         {
             _OriginalAmt = SalePrice;
             _downPaymentPct = DownPaymentPct;
@@ -129,9 +133,9 @@ namespace FinancialCalculator
             _startDate = DateTime.Today;
         }
 
-        public double LoanPrincipal()
+        public decimal LoanPrincipal()
         {
-            double returnValue;
+            decimal returnValue;
 
             // Return loan principal as total of loan minus interest.
 
@@ -140,7 +144,7 @@ namespace FinancialCalculator
                 if (_downPaymentPct == 0)
                     returnValue = _OriginalAmt;
                 else if (_OriginalAmt > 0 && _downPaymentPct > 0)
-                    returnValue = (_OriginalAmt - (_OriginalAmt * (double)_downPaymentPct));
+                    returnValue = (_OriginalAmt - (_OriginalAmt * (decimal)_downPaymentPct));
                 else
                     returnValue = 0;
             }
@@ -152,9 +156,9 @@ namespace FinancialCalculator
             return returnValue;
         }
 
-        public double TotalLoanAmount()
+        public decimal TotalLoanAmount()
         {
-            double returnValue;
+            decimal returnValue;
 
             try
             {
@@ -172,9 +176,9 @@ namespace FinancialCalculator
             return returnValue;
         }
 
-        public double TotalInterest()
+        public decimal TotalInterest()
         {
-            double returnValue;
+            decimal returnValue;
 
             // Return total interest as total of loan minus the principal.
             // Return 0 if the monthly payment has not been set.
@@ -186,21 +190,21 @@ namespace FinancialCalculator
             return returnValue;
         }
 
-        public double MonthlyPayment()
+        public decimal MonthlyPayment()
         {
             // Calculating the monthly mortgage payment from formula at:
             // https://www.wikihow.com/Calculate-Mortgage-Payments
             // P *((r * (Math.Pow(1 + r, n))) / (Math.Pow(1 + r, n)–1))
 
-            double returnPayment = 0;
-            double monthlyInterest = _interestRate / 12;
-            double loanAmt = LoanPrincipal();
+            decimal returnPayment = 0;
+            decimal monthlyInterest = _interestRate / 12;
+            decimal loanAmt = LoanPrincipal();
 
             try
             {
                 if (loanAmt > 0 && _interestRate > 0)
-                    returnPayment = loanAmt * ((monthlyInterest * Math.Pow((1 + monthlyInterest), _loanInMonths))
-                        / (Math.Pow(1 + monthlyInterest, _loanInMonths) - 1));
+                    returnPayment = loanAmt * ((monthlyInterest * (decimal)Math.Pow((double)(1 + monthlyInterest), _loanInMonths))
+                        / ((decimal)Math.Pow((double)(double)(1 + monthlyInterest), _loanInMonths) - 1));
                 else
                     returnPayment = 0;
             }
