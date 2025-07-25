@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace FinancialCalculator
 {
     class FinanceCalcs
     {
-        public static decimal CompoundingInterestFactor(decimal Interest, int Years, int timesPerYear)
+        public static double CompoundingInterest(double P, double r, int t, int n)
         {
             // Using the formula (1+r/n)(nt) from TheCalculatorSite.com
             // https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php?page=2
+            // P = principal investment amount
+            // r = annual interest rate(decimal)
+            // n = number of times interest is compounded per year
+            // t = time in years
 
-            decimal returnResult = 0;
+            double returnResult = 0;
 
             try
             {
-                returnResult = (decimal)Math.Pow((double)(1 + Interest / timesPerYear), timesPerYear * Years);
+                returnResult = P * Math.Pow((1 + (r / n)), (n * t));
             }
             catch
             {
@@ -28,21 +33,24 @@ namespace FinancialCalculator
             return returnResult;
         }
 
-        public static decimal CompoundingInterestWithDeposits(decimal InitAmount, decimal MonthlyDeposit, decimal Interest, int Years, int timesPerYear)
+        public static double CompoundingInterestWithDeposits(double P, double PMT, double r, int t, int n)
         {
             // Using the formula P(1+r/n)(nt) + PMT × {[(1 + r/n)(nt) - 1] / (r/n)} from TheCalculatorSite.com
             // https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php?page=2
+            // P = principal investment amount
+            // PMT = monthly payment amount
+            // r = annual interest rate(decimal)
+            // n = number of times interest is compounded per year
+            // t = time in years
 
-            decimal initAmtPlusInt = 0;
-            decimal pmtSeries = MonthlyDeposit * 12 * Years;
-            decimal pmtSeriesPlusInt = 0;
-            decimal intFactor = CompoundingInterestFactor(Interest, Years, timesPerYear);
-            
+            //decimal pmtSeries = PMT * 12 * t;
+            double pmtSeriesPlusInt = 0;
+            double initAmtPlusInt = 0;
 
             try
             {
-                initAmtPlusInt = InitAmount * intFactor;
-                pmtSeriesPlusInt = MonthlyDeposit * ((intFactor - 1) / (Interest / timesPerYear));
+                initAmtPlusInt = P * Math.Pow(1 + (r / n), (n * t));
+                pmtSeriesPlusInt = PMT * ((Math.Pow((1 + (r / n)), (n * t)) - 1) / (r / n));
             }
             catch (Exception ex)
             {

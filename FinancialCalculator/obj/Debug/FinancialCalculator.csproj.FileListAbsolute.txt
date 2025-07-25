@@ -49,3 +49,14 @@ C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\Fi
 C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.CoreCompileInputs.cache
 C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe
 C:\Users\acome\Source\Repos\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.pdb
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.AssemblyReference.cache
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe.config
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.LoanCalc.resources
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.Properties.Resources.resources
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.GenerateResource.cache
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.csproj.CoreCompileInputs.cache
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.exe
+C:\Data\FinancialCalculator\FinancialCalculator\obj\Debug\FinancialCalculator.pdb
+C:\Data\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.exe.config
+C:\Data\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.exe
+C:\Data\FinancialCalculator\FinancialCalculator\bin\Debug\FinancialCalculator.pdb

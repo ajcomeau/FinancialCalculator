@@ -169,9 +169,9 @@ namespace FinancialCalculator
         private void btnCalc_Click(object sender, EventArgs e)
         {
             // Get values from form
-            decimal initDeposit = decimalValue(txtInitDeposit.Text);
-            decimal intRate = (decimal)txtIntRate.Value / 100;
-            decimal monthlyDep = decimalValue(txtMonthlyDep.Text);
+            double initDeposit = doubleValue(txtInitDeposit.Text);
+            double intRate = (double)txtIntRate.Value / 100;
+            double monthlyDep = doubleValue(txtMonthlyDep.Text);
             int timeInYears = int.Parse(txtYears.Text);
             int timesPerYear;
 
@@ -187,8 +187,8 @@ namespace FinancialCalculator
             }
             else
             {
-                txtFinalAmt.Text = (initDeposit * FinanceCalcs.CompoundingInterestFactor( 
-                    intRate, timeInYears, timesPerYear)).ToString("C");
+                txtFinalAmt.Text = FinanceCalcs.CompoundingInterest(initDeposit, intRate, 
+                    timeInYears, timesPerYear).ToString("C");
             }
         }
 
